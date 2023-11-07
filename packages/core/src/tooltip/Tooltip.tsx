@@ -118,7 +118,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       reference
     );
 
-    const floatingRef = useForkRef(floating, ref);
+    const floatingRef = useForkRef<HTMLDivElement>(floating, ref);
 
     return (
       <>
@@ -131,8 +131,8 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         <FloatingComponent
           className={clsx(withBaseName(), withBaseName(status), className)}
           open={open && !disabled}
-          ref={floatingRef}
           {...getTooltipProps()}
+          ref={floatingRef}
           {...getTooltipPosition()}
         >
           <TooltipBase

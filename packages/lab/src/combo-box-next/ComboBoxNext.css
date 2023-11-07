@@ -1,14 +1,10 @@
-.saltComboBoxNext-highlight {
-  font-weight: var(--salt-text-fontWeight-strong);
+.saltComboBoxNext-list {
+  background: var(--salt-container-primary-background);
+  border: var(--salt-size-border) var(--salt-container-borderStyle) var(--salt-container-primary-borderColor);
+  overflow: hidden;
+  overflow-y: auto;
 }
 
-.saltComboBoxNext-input:hover {
-  --saltInput-borderColor: var(--salt-focused-outlineColor);
-}
-
-.saltComboBoxNext-list.saltListNext {
-  border-color: var(--salt-selectable-borderColor-selected);
-  box-shadow: var(--salt-overlayable-shadow-popout);
-  max-height: calc((var(--salt-size-base) + var(--salt-spacing-100)) * var(--comboBoxNext-itemCount, 5));
-  z-index: calc(var(--salt-zIndex-modal) + 1);
+.saltComboBoxNext-listCollapsed {
+  display: none;
 }

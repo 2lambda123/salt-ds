@@ -1,6 +1,5 @@
-import { ComponentMeta, Story } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React, {
-  ForwardedRef,
   forwardRef,
   useMemo,
   ComponentPropsWithoutRef,
@@ -22,7 +21,7 @@ import {
   FloatingComponentProvider,
   FloatingComponentProps,
 } from "@salt-ds/core";
-import { ComboBoxNext, DropdownNext } from "@salt-ds/lab";
+import { ComboBoxNext, DropdownNext, Option } from "@salt-ds/lab";
 import { useWindow } from "@salt-ds/window";
 import { useComponentCssInjection } from "@salt-ds/styles";
 
@@ -33,7 +32,7 @@ import { NewWindow, FloatingComponentWindow } from "./NewWindow";
 export default {
   title: "Core/Floating Platform",
   component: Tooltip,
-} as ComponentMeta<typeof Tooltip>;
+} as Meta<typeof Tooltip>;
 
 const defaultArgs: Omit<TooltipProps, "children"> = {
   content:
@@ -113,20 +112,11 @@ const NewWindowTest = (props: NewWindowTestProps) => {
 
   const FloatingUIComponent = useMemo(
     () =>
-      forwardRef(
-        (
-          {
-            style,
-            open,
-            top,
-            left,
-            width,
-            height,
-            position,
-            ...rest
-          }: RootComponentProps,
-          ref: ForwardedRef<HTMLElement>
-        ) => {
+      forwardRef<HTMLDivElement, RootComponentProps>(
+        function FloatingUIComponent(
+          { style, open, top, left, width, height, position, ...rest },
+          ref
+        ) {
           const FloatingRoot = (
             /* In thise case to avoid Flash of Unstyled Text (FOUT) in the tooltip, due to being in an iframe, we are always rendering the tooltip.
              * We are visually hiding it until it is open to 'eagerly load' the font
@@ -180,8 +170,20 @@ const NewWindowTest = (props: NewWindowTestProps) => {
                   Click to show extra content
                 </Button>
               </Tooltip>
-              <ComboBoxNext disabled={false} source={source} />
-              <DropdownNext source={source} />
+              <ComboBoxNext disabled={false}>
+                {source.map((item) => (
+                  <Option key={item} value={item}>
+                    {item}
+                  </Option>
+                ))}
+              </ComboBoxNext>
+              <DropdownNext>
+                {source.map((item) => (
+                  <Option key={item} value={item}>
+                    {item}
+                  </Option>
+                ))}
+              </DropdownNext>
             </FloatingComponentProvider>
           </FloatingPlatformProvider>
         </StackLayout>
@@ -190,7 +192,7 @@ const NewWindowTest = (props: NewWindowTestProps) => {
   );
 };
 
-export const CustomFloatingUiPlatform: Story<TooltipProps> = (
+export const CustomFloatingUiPlatform: StoryFn<typeof Tooltip> = (
   props: TooltipProps
 ) => {
   return (
@@ -209,7 +211,7 @@ export const CustomFloatingUiPlatform: Story<TooltipProps> = (
 };
 CustomFloatingUiPlatform.args = defaultArgs;
 
-export const AnimationFrame: Story<TooltipProps> = (props: TooltipProps) => {
+export const AnimationFrame: StoryFn = () => {
   const targetWindow = useWindow();
   useComponentCssInjection({ css: floatingCss, window: targetWindow });
 
@@ -224,17 +226,28 @@ export const AnimationFrame: Story<TooltipProps> = (props: TooltipProps) => {
             <Button>I am a moving button</Button>
           </Tooltip>
           <div style={{ width: 200, position: "relative" }}>
-            <ComboBoxNext disabled={false} source={source} />
-            <DropdownNext source={source} />
+            <ComboBoxNext disabled={false}>
+              {source.map((item) => (
+                <Option key={item} value={item}>
+                  {item}
+                </Option>
+              ))}
+            </ComboBoxNext>
+            <DropdownNext>
+              {source.map((item) => (
+                <Option key={item} value={item}>
+                  {item}
+                </Option>
+              ))}
+            </DropdownNext>
           </div>
         </StackLayout>
       </FloatingPlatformProvider>
     </div>
   );
 };
-CustomFloatingUiPlatform.args = defaultArgs;
 
-export const CustomMiddleware: Story<TooltipProps> = (props: TooltipProps) => {
+export const CustomMiddleware: StoryFn = () => {
   const targetWindow = useWindow();
   useComponentCssInjection({ css: floatingCss, window: targetWindow });
 
@@ -244,8 +257,20 @@ export const CustomMiddleware: Story<TooltipProps> = (props: TooltipProps) => {
     >
       <StackLayout align="start" direction={"column"}>
         <div style={{ width: 200, position: "relative" }}>
-          <ComboBoxNext disabled={false} source={source} />
-          <DropdownNext source={source} />
+          <ComboBoxNext disabled={false}>
+            {source.map((item) => (
+              <Option key={item} value={item}>
+                {item}
+              </Option>
+            ))}
+          </ComboBoxNext>
+          <DropdownNext>
+            {source.map((item) => (
+              <Option key={item} value={item}>
+                {item}
+              </Option>
+            ))}
+          </DropdownNext>
         </div>
         <Tooltip content="I am offset due to custom middleware" open>
           <Button>I am a button</Button>
@@ -254,4 +279,3 @@ export const CustomMiddleware: Story<TooltipProps> = (props: TooltipProps) => {
     </FloatingPlatformProvider>
   );
 };
-CustomFloatingUiPlatform.args = defaultArgs;
