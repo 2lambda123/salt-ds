@@ -1,4 +1,4 @@
-export const StateNames = [
+export const stateNames = [
   "Alabama",
   "Alaska",
   "Arizona",

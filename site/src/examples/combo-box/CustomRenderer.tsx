@@ -1,24 +1,7 @@
-import { ReactElement, Suspense } from "react";
-import { ComboBoxNext, Highlighter, ListItemNext } from "@salt-ds/lab";
+import { ChangeEvent, ReactElement, Suspense, useState } from "react";
+import { ComboBoxNext, Option } from "@salt-ds/lab";
 import { largestCities } from "./exampleData";
-import { ComboBoxItemProps } from "@salt-ds/lab/src/combo-box-next/utils";
 import { LazyCountrySymbol } from "@salt-ds/countries";
-
-const CustomListItem = ({
-  value,
-  matchPattern,
-  onMouseDown,
-  ...rest
-}: ComboBoxItemProps<any>) => {
-  return (
-    <ListItemNext value={value.name} onMouseDown={onMouseDown} {...rest}>
-      <Suspense fallback={null}>
-        <LazyCountrySymbol code={value.countryCode} />
-      </Suspense>
-      <Highlighter matchPattern={matchPattern} text={value.name} />
-    </ListItemNext>
-  );
-};
 
 const customMatchPattern = (
   input: { name: string; countryCode: string },
@@ -30,18 +13,30 @@ const customMatchPattern = (
   );
 };
 
-const customItemFilter = (source: any[], filterValue?: string) =>
-  source.filter((item) =>
-    !filterValue ? item : customMatchPattern(item, filterValue)
-  );
-
 export const CustomRenderer = (): ReactElement => {
+  const [filter, setFilter] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setFilter(value);
+  };
+
   return (
-    <ComboBoxNext
-      style={{ width: "266px" }}
-      source={largestCities}
-      ListItem={CustomListItem}
-      itemFilter={customItemFilter}
-    />
+    <Suspense fallback={null}>
+      <ComboBoxNext
+        style={{ width: "266px" }}
+        onChange={handleChange}
+        value={filter}
+      >
+        {largestCities
+          .filter((value) => customMatchPattern(value, filter))
+          .map((value) => (
+            <Option value={value.countryCode} key={value.countryCode}>
+              <LazyCountrySymbol code={value.countryCode} />
+              {value.name}
+            </Option>
+          ))}
+      </ComboBoxNext>
+    </Suspense>
   );
 };

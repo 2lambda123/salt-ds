@@ -1,7 +1,13 @@
 import { ReactElement } from "react";
-import { DropdownNext } from "@salt-ds/lab";
-import { StateNames } from "./exampleData";
+import { DropdownNext, Option } from "@salt-ds/lab";
+import { stateNames } from "./exampleData";
 
 export const DefaultSelected = (): ReactElement => (
-  <DropdownNext source={StateNames} defaultSelected="California" />
+  <DropdownNext defaultSelected={["California"]} defaultValue="California">
+    {stateNames.map((state) => (
+      <Option value={state} key={state}>
+        {state}
+      </Option>
+    ))}
+  </DropdownNext>
 );

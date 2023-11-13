@@ -1,6 +1,8 @@
+import { CountryCode } from "@salt-ds/countries";
+
 export type LargeCity = {
   name: string;
-  countryCode: string;
+  countryCode: CountryCode;
 };
 
 export const shortColorData = [
