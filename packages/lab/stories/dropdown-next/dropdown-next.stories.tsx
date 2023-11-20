@@ -1,4 +1,9 @@
-import { DropdownNext, Option, OptionGroup } from "@salt-ds/lab";
+import {
+  DropdownNext,
+  DropdownNextProps,
+  Option,
+  OptionGroup,
+} from "@salt-ds/lab";
 
 import { Meta, StoryFn } from "@storybook/react";
 import {
@@ -8,9 +13,10 @@ import {
   StackLayout,
 } from "@salt-ds/core";
 import { GB, US } from "@salt-ds/countries";
+import { useState } from "react";
 
 export default {
-  title: "Lab/DropdownNext Next",
+  title: "Lab/Dropdown Next",
   component: DropdownNext,
 } as Meta<typeof DropdownNext>;
 
@@ -95,7 +101,7 @@ export const Default = Template.bind({});
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
-  placeholder: "Select a state",
+  placeholder: "State",
 };
 
 export const WithDefaultSelected = Template.bind({});
@@ -209,6 +215,36 @@ export const LongList: StoryFn<typeof DropdownNext> = (args) => {
   return (
     <DropdownNext {...args}>
       {longUsStates.map((state) => (
+        <Option value={state} key={state}>
+          {state}
+        </Option>
+      ))}
+    </DropdownNext>
+  );
+};
+
+export const CustomValue: StoryFn<typeof DropdownNext> = (args) => {
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const handleSelectionChange: DropdownNextProps["onSelectionChange"] = (
+    event,
+    newSelected
+  ) => {
+    setSelected(newSelected);
+    args?.onSelectionChange(event, newSelected);
+  };
+
+  return (
+    <DropdownNext
+      {...args}
+      selected={selected}
+      value={
+        selected.length < 2 ? selected[0] : `${selected.length} items selected`
+      }
+      onSelectionChange={handleSelectionChange}
+      multiselect
+    >
+      {usStates.map((state) => (
         <Option value={state} key={state}>
           {state}
         </Option>

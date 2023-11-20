@@ -81,7 +81,7 @@ export const Default = Template.bind({});
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
-  placeholder: "Select a state",
+  placeholder: "State",
 };
 
 export const WithDefaultSelected = Template.bind({});
