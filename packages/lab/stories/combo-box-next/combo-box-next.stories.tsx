@@ -408,3 +408,50 @@ export const LongList: StoryFn<typeof ComboBoxNext> = (args) => {
     </ComboBoxNext>
   );
 };
+
+export const EmptyMessage: StoryFn<typeof ComboBoxNext> = (args) => {
+  const [value, setValue] = useState(args.defaultValue?.toString() ?? "");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setValue(value);
+  };
+
+  const handleSelectionChange = (
+    event: SyntheticEvent,
+    newSelected: string[]
+  ) => {
+    if (args.multiselect) {
+      return;
+    }
+
+    if (newSelected.length === 1) {
+      setValue(newSelected[0]);
+    } else {
+      setValue("");
+    }
+  };
+
+  const filteredOptions = usStates.filter((state) =>
+    state.toLowerCase().includes(value.trim().toLowerCase())
+  );
+
+  return (
+    <ComboBoxNext
+      {...args}
+      onChange={handleChange}
+      onSelectionChange={handleSelectionChange}
+      value={value}
+    >
+      {filteredOptions.length > 0 ? (
+        filteredOptions.map((state) => (
+          <Option value={state} key={state}>
+            {state}
+          </Option>
+        ))
+      ) : (
+        <Option value="">No results found for &quot;{value}&quot;</Option>
+      )}
+    </ComboBoxNext>
+  );
+};

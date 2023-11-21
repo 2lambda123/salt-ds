@@ -17,6 +17,9 @@
   padding: 0 var(--salt-spacing-100);
   gap: var(--salt-spacing-100);
   color: var(--dropdown-next-color);
+  font-family: var(--salt-text-fontFamily);
+  font-size: var(--salt-text-fontSize);
+  font-weight: var(--salt-text-fontWeight);
 }
 
 .saltDropdownNext-button:hover {
@@ -30,6 +33,10 @@
 
 .saltDropdownNext-content {
   flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
 }
 
 .saltDropdownNext-placeholder {

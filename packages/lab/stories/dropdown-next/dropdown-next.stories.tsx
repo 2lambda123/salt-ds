@@ -195,17 +195,39 @@ export const Grouped: StoryFn<typeof DropdownNext> = (args) => {
   );
 };
 
+const adornmentMap: Record<string, JSX.Element> = {
+  GB: <GB size={0.75} />,
+  US: <US size={0.75} />,
+};
+
 export const ComplexOption: StoryFn<typeof DropdownNext> = (args) => {
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const handleSelectionChange: DropdownNextProps["onSelectionChange"] = (
+    event,
+    newSelected
+  ) => {
+    setSelected(newSelected);
+    args.onSelectionChange?.(event, newSelected);
+  };
+
+  const adornment = adornmentMap[selected[0] ?? ""] || null;
+
   return (
-    <DropdownNext style={{ width: 200 }} {...args}>
+    <DropdownNext
+      {...args}
+      selected={selected}
+      startAdornment={adornment}
+      onSelectionChange={handleSelectionChange}
+    >
       <Option
         value="GB"
         textValue="United Kingdom of Great Britain and Northern Ireland"
       >
-        <GB /> United Kingdom of Great Britain and Northern Ireland
+        <GB size={0.75} /> United Kingdom of Great Britain and Northern Ireland
       </Option>
       <Option value="US" textValue="United States of America">
-        <US /> United States of America
+        <US size={0.75} /> United States of America
       </Option>
     </DropdownNext>
   );
@@ -231,7 +253,7 @@ export const CustomValue: StoryFn<typeof DropdownNext> = (args) => {
     newSelected
   ) => {
     setSelected(newSelected);
-    args?.onSelectionChange(event, newSelected);
+    args.onSelectionChange?.(event, newSelected);
   };
 
   return (

@@ -38,6 +38,10 @@ export interface DropdownNextProps
   multiselect?: boolean;
   placeholder?: string;
   required?: boolean;
+  /**
+   * Start adornment component
+   */
+  startAdornment?: ReactNode;
   variant?: "primary" | "secondary";
   validationStatus?: "error" | "warning" | "success";
 }
@@ -67,6 +71,7 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
       onOpenChange,
       open,
       placeholder,
+      startAdornment,
       required: requiredProp,
       variant = "primary",
       validationStatus: validationStatusProp,
@@ -144,7 +149,7 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
           apply({ rects, elements, availableHeight }) {
             Object.assign(elements.floating.style, {
               minWidth: `${rects.reference.width}px`,
-              maxHeight: `${availableHeight}px`,
+              maxHeight: `calc(${availableHeight}px - var(--salt-spacing-100))`,
             });
           },
         }),
@@ -220,16 +225,14 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
       }
 
       if (
-        (event.key.length === 1 &&
-          !event.ctrlKey &&
-          !event.metaKey &&
-          !event.altKey) ||
-        (event.key === " " && typeaheadString.current.length > 0)
+        event.key.length === 1 &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey
       ) {
         event.preventDefault();
         event.stopPropagation();
         handleTypeahead(event);
-        return;
       }
 
       let newActive;
@@ -254,7 +257,10 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
           break;
         case "Enter":
         case " ":
-          if (openState && activeState?.disabled) {
+          if (
+            (openState && Boolean(activeState?.disabled)) ||
+            (typeaheadString.current.trim().length > 0 && event.key === " ")
+          ) {
             event.preventDefault();
             return;
           }
@@ -316,6 +322,9 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
       ignoreBlur.current = true;
     };
 
+    const handleListFocus = () => {
+      buttonRef.current?.focus();
+    };
     const handleListClick = () => {
       buttonRef.current?.focus();
     };
@@ -361,12 +370,17 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
             aria-required={required ? "true" : undefined}
             aria-expanded={openState}
             aria-activedescendant={activeState?.id}
-            aria-labelledby={clsx(formFieldLabelledBy, ariaLabelledBy)}
-            aria-describedby={clsx(formFieldDescribedBy, ariaDescribedBy)}
+            aria-labelledby={
+              clsx(formFieldLabelledBy, ariaLabelledBy) || undefined
+            }
+            aria-describedby={
+              clsx(formFieldDescribedBy, ariaDescribedBy) || undefined
+            }
             aria-multiselectable={multiselect}
             aria-controls={openState ? listId : undefined}
             {...rest}
           >
+            {startAdornment}
             <span
               className={clsx(withBaseName("content"), {
                 [withBaseName("placeholder")]: !valueState,
@@ -392,6 +406,7 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
             })}
             onMouseOver={handleListMouseOver}
             onMouseDown={handleListMouseDown}
+            onFocus={handleListFocus}
             onClick={handleListClick}
           >
             {children}

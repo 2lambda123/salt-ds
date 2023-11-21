@@ -234,6 +234,14 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
       if (!openState) {
         setOpen(event, true);
       }
+
+      queueMicrotask(() => {
+        const newOption = getOptionAtIndex(0);
+        if (newOption) {
+          setActive(newOption);
+        }
+      });
+
       onChange?.(event);
     };
 
@@ -243,6 +251,10 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
 
     const handleListMouseDown = () => {
       ignoreBlur.current = true;
+    };
+
+    const handleListFocus = () => {
+      inputRef.current?.focus();
     };
 
     const handleListClick = () => {
@@ -325,6 +337,7 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
           })}
           onMouseOver={handleListMouseOver}
           onMouseDown={handleListMouseDown}
+          onFocus={handleListFocus}
           onClick={handleListClick}
         >
           {children}
