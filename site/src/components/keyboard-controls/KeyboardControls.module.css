@@ -10,3 +10,16 @@
 .keyCol {
   min-width: 10rem;
 }
+
+.key {
+  display: inline-block;
+  background-color: #ffffff;
+  border: var(--salt-size-border) var(--salt-container-borderStyle) var(--salt-container-primary-borderColor);
+  border-radius: 3px;
+  font-family: var(--salt-text-label-fontFamily);
+  font-size: var(--salt-text-label-fontSize);
+  font-weight: var(--salt-text-fontWeight-strong);
+  margin: var(--salt-spacing-25);
+  padding: var(--salt-spacing-25) var(--salt-spacing-75);
+  box-shadow:  var(--salt-color-gray-40) 0px 2px
+}
