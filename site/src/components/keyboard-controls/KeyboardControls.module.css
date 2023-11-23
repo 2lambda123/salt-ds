@@ -21,5 +21,5 @@
   font-weight: var(--salt-text-fontWeight-strong);
   margin: var(--salt-spacing-25);
   padding: var(--salt-spacing-25) var(--salt-spacing-75);
-  box-shadow:  var(--salt-color-gray-40) 0px 2px
+  box-shadow: var(--salt-color-gray-40) 0px 2px;
 }
