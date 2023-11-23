@@ -22,7 +22,7 @@ export interface KeyboardControlProps {
   className?: string;
 }
 
-const keyOrComboSeparator = /\s*([\+\/])\s*/;
+const keyOrComboSeparator = /\s*([\+\/\,])\s*/;
 
 function splitCombo(keyOrCombo: string): string[] {
   return keyOrCombo.split(keyOrComboSeparator);
