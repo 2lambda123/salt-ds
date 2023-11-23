@@ -30,7 +30,7 @@
   font-size: var(--salt-text-fontSize);
   line-height: var(--salt-text-lineHeight);
   font-family: var(--salt-text-fontFamily);
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
   font-weight: var(--salt-text-fontWeight-strong);
   --saltIcon-color: currentcolor;
   text-align: left;
@@ -42,8 +42,8 @@
 }
 .saltAccordionHeader:disabled {
   background: var(--salt-actionable-secondary-background);
-  color: var(--salt-text-primary-foreground-disabled);
-  --saltIcon-fill: var(--salt-text-primary-foreground-disabled);
+  color: var(--salt-content-primary-foreground-disabled);
+  --saltIcon-fill: var(--salt-content-primary-foreground-disabled);
 }
 .saltAccordionHeader-icon {
   transition: transform var(--salt-duration-perceptible) ease-in-out;
@@ -111,20 +111,22 @@
   --avatar-foreground: var(--saltAvatar-foreground, var(--salt-accent-foreground));
   --avatar-size-multiplier: var(--saltAvatar-size-multiplier, 1);
   --avatar-base-size: var(--salt-size-base, 12px);
-  --avatar-base-fontSize: var(--saltAvatar-fontSize, var(--salt-accent-fontSize));
+  --avatar-base-fontSize: var(--saltAvatar-fontSize, var(--salt-text-notation-fontSize));
   --avatar-container-size: calc(var(--avatar-base-size) * var(--avatar-size-multiplier));
   --avatar-fontSize: calc(var(--avatar-base-fontSize) * var(--avatar-size-multiplier));
   --saltIcon-color: var(--avatar-foreground);
-  --salt-icon-size-base: calc(var(--avatar-container-size) / 2);
+  --salt-size-icon: calc(var(--avatar-container-size) / 2);
 }
 .saltAvatar {
-  line-height: var(--saltAvatar-lineHeight, var(--salt-accent-lineHeight));
+  line-height: var(--saltAvatar-lineHeight, var(--salt-text-notation-lineHeight));
   display: flex;
   justify-content: center;
   align-items: center;
   background: var(--saltAvatar-background, var(--salt-accent-background));
   color: var(--avatar-foreground);
   font-size: var(--avatar-fontSize);
+  font-family: var(--salt-text-fontFamily);
+  font-weight: var(--salt-text-fontWeight);
   width: var(--avatar-container-size);
   min-width: var(--avatar-container-size);
   height: var(--avatar-container-size);
@@ -153,9 +155,8 @@
 .saltBadge-badge {
   padding-left: var(--salt-spacing-50);
   padding-right: var(--salt-spacing-50);
-  line-height: var(--salt-accent-lineHeight);
-  height: var(--salt-accent-lineHeight);
-  min-width: var(--salt-accent-lineHeight);
+  height: var(--salt-text-notation-lineHeight);
+  min-width: var(--salt-text-notation-lineHeight);
   border-radius: 9999px;
   white-space: nowrap;
   z-index: var(--salt-zIndex-notification);
@@ -163,8 +164,10 @@
   justify-content: center;
   display: inline-flex;
   margin: auto;
-  font-size: var(--salt-accent-fontSize);
-  font-weight: var(--salt-accent-fontWeight);
+  font-size: var(--salt-text-notation-fontSize);
+  font-weight: var(--salt-text-notation-fontWeight);
+  font-family: var(--salt-text-fontFamily);
+  line-height: var(--salt-text-notation-lineHeight);
   background: var(--salt-accent-background);
   color: var(--salt-accent-foreground);
   -webkit-font-smoothing: antialiased;
@@ -189,6 +192,10 @@
   padding: var(--saltBanner-padding, var(--salt-spacing-50) var(--salt-spacing-100));
   width: 100%;
   min-height: calc(var(--salt-size-base) + var(--salt-spacing-100));
+  font-family: var(--salt-text-fontFamily);
+  font-size: var(--salt-text-fontSize);
+  font-weight: var(--salt-text-fontWeight);
+  line-height: var(--salt-text-lineHeight);
 }
 .saltBanner-icon.saltIcon {
   min-height: var(--salt-size-base);
@@ -249,7 +256,6 @@
   --button-background-active: var(--salt-actionable-cta-background-active);
   --button-background-disabled: var(--salt-actionable-cta-background-disabled);
   --button-background-hover: var(--salt-actionable-cta-background-hover);
-  --button-fontWeight: var(--salt-actionable-cta-fontWeight);
   --button-text-color: var(--salt-actionable-cta-foreground);
   --button-text-color-active: var(--salt-actionable-cta-foreground-active);
   --button-text-color-disabled: var(--salt-actionable-cta-foreground-disabled);
@@ -273,7 +279,6 @@
   --button-background-active: var(--salt-actionable-primary-background-active);
   --button-background-disabled: var(--salt-actionable-primary-background-disabled);
   --button-background-hover: var(--salt-actionable-primary-background-hover);
-  --button-fontWeight: var(--salt-actionable-primary-fontWeight);
   --button-text-color: var(--salt-actionable-primary-foreground);
   --button-text-color-active: var(--salt-actionable-primary-foreground-active);
   --button-text-color-disabled: var(--salt-actionable-primary-foreground-disabled);
@@ -297,7 +302,6 @@
   --button-background-active: var(--salt-actionable-secondary-background-active);
   --button-background-disabled: var(--salt-actionable-secondary-background-disabled);
   --button-background-hover: var(--salt-actionable-secondary-background-hover);
-  --button-fontWeight: var(--salt-actionable-secondary-fontWeight);
   --button-text-color: var(--salt-actionable-secondary-foreground);
   --button-text-color-active: var(--salt-actionable-secondary-foreground-active);
   --button-text-color-disabled: var(--salt-actionable-secondary-foreground-disabled);
@@ -332,20 +336,20 @@
   font-size: var(--saltButton-fontSize, var(--salt-text-fontSize));
   font-family: var(--saltButton-fontFamily, var(--salt-text-fontFamily));
   line-height: var(--saltButton-lineHeight, var(--salt-text-lineHeight));
-  letter-spacing: var(--saltButton-letterSpacing, var(--salt-actionable-letterSpacing));
-  text-transform: var(--saltButton-textTransform, var(--salt-actionable-textTransform));
+  letter-spacing: var(--saltButton-letterSpacing, var(--salt-text-action-letterSpacing));
+  text-transform: var(--saltButton-textTransform, var(--salt-text-action-textTransform));
   padding: 0 var(--saltButton-padding, var(--salt-size-unit));
   margin: var(--saltButton-margin, 0);
   height: var(--saltButton-height, var(--salt-size-base));
   min-width: var(--saltButton-minWidth, unset);
   position: relative;
-  text-align: var(--saltButton-textAlign, var(--salt-actionable-textAlign));
+  text-align: var(--saltButton-textAlign, var(--salt-text-action-textAlign));
   text-decoration: none;
   transition: none;
   width: var(--saltButton-width, auto);
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  font-weight: var(--saltButton-fontWeight, var(--button-fontWeight));
+  font-weight: var(--saltButton-fontWeight, var(--salt-text-action-fontWeight));
 }
 .saltButton:focus-visible {
   outline-style: var(--salt-focused-outlineStyle);
@@ -388,6 +392,10 @@
   border-width: var(--salt-size-border);
   border-style: var(--salt-container-borderStyle);
   padding: var(--saltCard-padding, var(--salt-spacing-300));
+  font-family: var(--salt-text-fontFamily);
+  font-size: var(--salt-text-fontSize);
+  font-weight: var(--salt-text-fontWeight);
+  line-height: var(--salt-text-lineHeight);
 }
 .saltCard-primary {
   background: var(--saltCard-background, var(--salt-container-primary-background));
@@ -421,7 +429,7 @@ a:focus .saltCard-interactable.saltCard-disabled,
 .saltCard-disabled.saltCard-interactable,
 a:focus .saltCard-interactable.saltCard-disabled {
   border-color: var(--salt-container-primary-borderColor-disabled);
-  color: var(--saltCard-color-disabled, var(--salt-text-primary-foreground-disabled));
+  color: var(--saltCard-color-disabled, var(--salt-content-primary-foreground-disabled));
   cursor: var(--saltCard-cursor-disabled, var(--salt-selectable-cursor-disabled));
   outline: none;
 }
@@ -462,7 +470,7 @@ a:focus-visible .saltInteractableCard,
 .saltInteractableCard:focus-visible {
   cursor: var(--saltCard-interactable-cursor-focus, var(--salt-selectable-cursor-hover));
   box-shadow: var(--saltCard-interactable-shadow-focus, var(--salt-overlayable-shadow-hover));
-  color: var(--saltCard-color-focus, var(--salt-text-primary-foreground));
+  color: var(--saltCard-color-focus, var(--salt-content-primary-foreground));
   outline-color: var(--salt-focused-outlineColor);
   outline-style: var(--salt-focused-outlineStyle);
   outline-width: var(--salt-focused-outlineWidth);
@@ -484,7 +492,7 @@ a:link .saltInteractableCard * {
 .saltInteractableCard-disabled:hover,
 .saltInteractableCard-disabled:active {
   box-shadow: var(--saltCard-interactable-shadow, var(--salt-overlayable-shadow));
-  color: var(--saltCard-color-disabled, var(--salt-text-primary-foreground-disabled));
+  color: var(--saltCard-color-disabled, var(--salt-content-primary-foreground-disabled));
   cursor: var(--saltCard-interactable-cursor-disabled, var(--salt-selectable-cursor-disabled));
   outline: none;
 }
@@ -506,7 +514,7 @@ a:link .saltInteractableCard * {
   pointer-events: none;
 }
 .saltInteractableCard-link {
-  color: var(--saltCard-link-color, var(--salt-text-primary-foreground));
+  color: var(--saltCard-link-color, var(--salt-content-primary-foreground));
   inset: var(--salt-focused-outlineInset);
   outline-color: var(--salt-focused-outlineColor);
   outline-offset: var(--salt-focused-outlineOffset);
@@ -526,11 +534,11 @@ a:link .saltInteractableCard * {
   font-weight: var(--salt-text-fontWeight);
 }
 .saltCheckbox-disabled {
-  color: var(--salt-text-primary-foreground-disabled);
+  color: var(--salt-content-primary-foreground-disabled);
   cursor: var(--salt-selectable-cursor-disabled);
 }
 .saltCheckbox-readOnly {
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
   cursor: var(--salt-selectable-cursor-readonly);
 }
 .saltCheckbox-input,
@@ -660,7 +668,7 @@ a:link .saltInteractableCard * {
 .saltCheckboxIcon-readOnly,
 .saltCheckbox:hover .saltCheckboxIcon-readOnly {
   border-color: var(--salt-selectable-borderColor-readonly);
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
 }
 
 /* src/flex-item/FlexItem.css */
@@ -753,6 +761,10 @@ a:link .saltInteractableCard * {
   gap: var(--salt-spacing-100);
   text-align: left;
   width: var(--saltFormField-width, 100%);
+  font-family: var(--salt-text-fontFamily);
+  font-size: var(--salt-text-fontSize);
+  font-weight: var(--salt-text-fontWeight);
+  line-height: var(--salt-text-lineHeight);
 }
 .saltFormField-labelTop {
   grid-template-areas: "label" "controls";
@@ -831,7 +843,7 @@ a:link .saltInteractableCard * {
   font-style: var(--salt-editable-help-fontStyle);
 }
 .saltFormFieldLabel-sentence.saltText {
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
   font-size: var(--salt-text-fontSize);
 }
 
@@ -880,7 +892,7 @@ a:link .saltInteractableCard * {
   --input-borderWidth: var(--salt-size-border);
   align-items: center;
   background: var(--saltInput-background, var(--input-background));
-  color: var(--saltInput-color, var(--salt-text-primary-foreground));
+  color: var(--saltInput-color, var(--salt-content-primary-foreground));
   display: inline-flex;
   font-family: var(--salt-text-fontFamily);
   font-size: var(--saltInput-fontSize, var(--salt-text-fontSize));
@@ -966,7 +978,7 @@ a:link .saltInteractableCard * {
   outline: none;
 }
 .saltInput-input::selection {
-  background: var(--salt-text-background-selected);
+  background: var(--salt-content-foreground-highlight);
 }
 .saltInput-input::placeholder {
   font-weight: var(--salt-text-fontWeight-small);
@@ -1001,7 +1013,7 @@ a:link .saltInteractableCard * {
   --input-borderWidth: var(--salt-size-border);
   background: var(--input-background-disabled);
   cursor: var(--salt-editable-cursor-disabled);
-  color: var(--saltInput-color-disabled, var(--salt-text-primary-foreground-disabled));
+  color: var(--saltInput-color-disabled, var(--salt-content-primary-foreground-disabled));
 }
 .saltInput-activationIndicator {
   left: 0;
@@ -1045,12 +1057,12 @@ a:link .saltInteractableCard * {
 
 /* src/link/Link.css */
 .saltLink {
-  --link-color-hover: var(--saltLink-color-hover, var(--salt-text-link-foreground-hover));
-  --link-color-active: var(--saltLink-color-active, var(--salt-text-link-foreground-active));
-  --link-color-visited: var(--saltLink-color-visited, var(--salt-text-link-foreground-visited));
+  --link-color-hover: var(--saltLink-color-hover, var(--salt-content-foreground-hover));
+  --link-color-active: var(--saltLink-color-active, var(--salt-content-foreground-active));
+  --link-color-visited: var(--saltLink-color-visited, var(--salt-content-foreground-visited));
   --link-color-focus: var(--saltLink-color-focus, var(--link-color-hover));
-  --link-textDecoration: var(--salt-text-link-textDecoration);
-  --link-textDecoration-hover: var(--salt-text-link-textDecoration-hover);
+  --link-textDecoration: var(--salt-navigable-textDecoration);
+  --link-textDecoration-hover: var(--salt-navigable-textDecoration-hover);
   --link-fontFamily: var(--salt-text-fontFamily);
   --link-focus-outline: var(--salt-focused-outline);
 }
@@ -1061,10 +1073,10 @@ a:link .saltInteractableCard * {
   font-family: var(--link-fontFamily);
 }
 .saltText-primary {
-  --link-color: var(--salt-text-primary-foreground);
+  --link-color: var(--salt-content-primary-foreground);
 }
 .saltText-secondary {
-  --link-color: var(--salt-text-secondary-foreground);
+  --link-color: var(--salt-content-secondary-foreground);
 }
 .saltLink-icon {
   margin-left: var(--salt-size-adornmentGap);
@@ -1110,7 +1122,7 @@ a:link .saltInteractableCard * {
   align-items: center;
   background: var(--multilineInput-background);
   border: var(--multilineInput-border);
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
   display: inline-flex;
   font-family: var(--salt-text-fontFamily);
   font-size: var(--salt-text-fontSize);
@@ -1202,7 +1214,7 @@ a:link .saltInteractableCard * {
   outline: none;
 }
 .saltMultilineInput-textarea::selection {
-  background: var(--salt-text-background-selected);
+  background: var(--salt-content-foreground-highlight);
 }
 .saltMultilineInput-focused {
   --multilineInput-borderColor: var(--multilineInput-outlineColor);
@@ -1229,7 +1241,7 @@ a:link .saltInteractableCard * {
   --multilineInput-activationIndicator-borderWidth: var(--salt-size-border);
   background: var(--multilineInput-background-disabled);
   cursor: var(--salt-editable-cursor-disabled);
-  color: var(--salt-text-primary-foreground-disabled);
+  color: var(--salt-content-primary-foreground-disabled);
 }
 .saltMultilineInput-activationIndicator {
   left: 0;
@@ -1306,6 +1318,10 @@ a:link .saltInteractableCard * {
   overflow: auto;
   padding: var(--saltPanel-padding, var(--salt-size-container-spacing));
   width: var(--saltPanel-width, 100%);
+  font-family: var(--salt-text-fontFamily);
+  font-size: var(--salt-text-fontSize);
+  font-weight: var(--salt-text-fontWeight);
+  line-height: var(--salt-text-lineHeight);
 }
 
 /* src/radio-button/RadioButton.css */
@@ -1321,11 +1337,11 @@ a:link .saltInteractableCard * {
   --radioButton-icon-marginTop: calc((var(--salt-text-lineHeight) - var(--salt-size-selectable)) / 2);
 }
 .saltRadioButton-disabled {
-  color: var(--salt-text-primary-foreground-disabled);
+  color: var(--salt-content-primary-foreground-disabled);
   cursor: var(--salt-selectable-cursor-disabled);
 }
 .saltRadioButton-readOnly {
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
   cursor: var(--salt-selectable-cursor-readonly);
 }
 .saltRadioButton-input {
@@ -1443,7 +1459,7 @@ a:link .saltInteractableCard * {
 .saltRadioButtonIcon-readOnly,
 .saltRadioButton:hover .saltRadioButtonIcon-readOnly {
   border-color: var(--salt-selectable-borderColor-readonly);
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
 }
 
 /* src/salt-provider/SaltProvider.css */
@@ -1537,8 +1553,8 @@ a:link .saltInteractableCard * {
   align-self: center;
   display: inline-block;
   fill: var(--saltStatusAdornment-color, var(--statusAdornment-color));
-  height: var(--salt-icon-size-status-adornment);
-  min-height: var(--salt-icon-size-status-adornment);
+  height: var(--salt-size-adornment);
+  min-height: var(--salt-size-adornment);
   padding-left: var(--salt-spacing-100);
   position: relative;
 }
@@ -1580,10 +1596,14 @@ a:link .saltInteractableCard * {
   gap: var(--salt-spacing-100);
   position: relative;
   cursor: var(--salt-selectable-cursor-hover);
-  color: var(--salt-text-primary-foreground);
+  color: var(--salt-content-primary-foreground);
+  font-family: var(--salt-text-fontFamily);
+  font-size: var(--salt-text-fontSize);
+  font-weight: var(--salt-text-fontWeight);
+  line-height: var(--salt-text-lineHeight);
 }
 .saltSwitch-disabled {
-  color: var(--salt-text-primary-foreground-disabled);
+  color: var(--salt-content-primary-foreground-disabled);
   cursor: var(--salt-selectable-cursor-disabled);
 }
 .saltSwitch-track {
@@ -1676,9 +1696,12 @@ a:link .saltInteractableCard * {
 .saltText {
   color: var(--saltText-color, var(--text-color));
   font-family: var(--saltText-fontFamily, var(--salt-text-fontFamily));
+  font-size: var(--saltText-fontSize, var(--salt-text-fontSize));
+  line-height: var(--saltText-lineHeight, var(--salt-text-lineHeight));
+  font-weight: var(--saltText-fontWeight, var(--salt-text-fontWeight));
 }
 .saltText::selection {
-  background: var(--saltText-highlight, var(--salt-text-background-selected));
+  background: var(--saltText-highlight, var(--salt-content-foreground-highlight));
 }
 .saltText-lineClamp {
   display: -webkit-box;
@@ -1688,16 +1711,16 @@ a:link .saltInteractableCard * {
   word-break: break-word;
 }
 .saltText-primary {
-  --text-color: var(--salt-text-primary-foreground);
+  --text-color: var(--salt-content-primary-foreground);
 }
 .saltText-primary.saltText-disabled {
-  --text-color: var(--salt-text-primary-foreground-disabled);
+  --text-color: var(--salt-content-primary-foreground-disabled);
 }
 .saltText-secondary {
-  --text-color: var(--salt-text-secondary-foreground);
+  --text-color: var(--salt-content-secondary-foreground);
 }
 .saltText-secondary.saltText-disabled {
-  --text-color: var(--salt-text-secondary-foreground-disabled);
+  --text-color: var(--salt-content-secondary-foreground-disabled);
 }
 .saltText strong {
   font-weight: var(--salt-text-fontWeight-strong);
@@ -1705,6 +1728,25 @@ a:link .saltInteractableCard * {
 .saltText small {
   font-size: inherit;
   font-weight: var(--salt-text-fontWeight-small);
+}
+.saltText-notation.saltText {
+  font-family: var(--salt-text-notation-fontFamily);
+  font-size: var(--salt-text-notation-fontSize);
+  line-height: var(--salt-text-notation-lineHeight);
+  font-weight: var(--salt-text-fontWeight);
+}
+.saltText-notation.saltText strong {
+  font-weight: var(--salt-text-notation-fontWeight-strong);
+}
+.saltText-notation.saltText small {
+  font-size: inherit;
+  font-weight: var(--salt-text-notation-fontWeight-small);
+}
+.saltText-action.saltText {
+  letter-spacing: var(--salt-text-action-letterSpacing);
+  text-transform: var(--salt-text-action-textTransform);
+  text-align: var(--salt-text-action-textAlign);
+  font-weight: var(--salt-text-action-fontWeight);
 }
 .saltText-display1.saltText {
   font-family: var(--salt-text-display1-fontFamily);
@@ -1819,6 +1861,10 @@ label.saltText small,
   padding: var(--saltToast-padding, var(--salt-spacing-100));
   min-height: calc(var(--salt-size-base) + var(--salt-spacing-100));
   margin: 0 var(--salt-spacing-100) var(--salt-spacing-100) var(--salt-spacing-100);
+  font-family: var(--salt-text-fontFamily);
+  font-size: var(--salt-text-fontSize);
+  font-weight: var(--salt-text-fontWeight);
+  line-height: var(--salt-text-lineHeight);
 }
 .saltToast:last-child {
   margin-bottom: var(--salt-spacing-200);
@@ -1860,11 +1906,11 @@ label.saltText small,
   border-radius: 0;
   height: var(--salt-size-base);
   color: var(--salt-actionable-secondary-foreground);
-  text-transform: var(--salt-actionable-textTransform);
-  font-weight: var(--salt-actionable-secondary-fontWeight);
+  text-transform: var(--salt-text-action-textTransform);
+  font-weight: var(--salt-text-action-fontWeight);
   font-family: var(--salt-text-fontFamily);
-  text-align: var(--salt-actionable-textAlign);
-  letter-spacing: var(--salt-actionable-letterSpacing);
+  text-align: var(--salt-text-action-textAlign);
+  letter-spacing: var(--salt-text-action-letterSpacing);
   line-height: var(--salt-text-lineHeight);
   font-size: var(--salt-text-fontSize);
   padding-left: var(--salt-spacing-100);
@@ -1936,7 +1982,8 @@ label.saltText small,
   border-style: var(--saltTooltip-borderStyle, var(--salt-container-borderStyle));
   border-width: var(--saltTooltip-borderWidth, var(--salt-size-border));
   box-shadow: var(--saltTooltip-shadow, var(--salt-overlayable-shadow-popout));
-  color: var(--saltTooltip-text-color, var(--salt-text-primary-foreground));
+  color: var(--saltTooltip-text-color, var(--salt-content-primary-foreground));
+  font-family: var(--salt-text-fontFamily);
   font-size: var(--saltTooltip-fontSize, var(--salt-text-fontSize));
   font-weight: var(--saltTooltip-fontWeight, var(--salt-text-fontWeight));
   line-height: var(--saltTooltip-lineHeight, var(--salt-text-lineHeight));
@@ -1972,4 +2019,4 @@ label.saltText small,
   --tooltip-status-borderColor: var(--salt-status-success-borderColor);
 }
 
-/* src/10396537-7be3-41f4-bd67-c82c5001316e.css */
+/* src/1165b873-b2b5-4e7c-ad37-268ae6986218.css */
