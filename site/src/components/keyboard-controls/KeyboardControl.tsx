@@ -1,7 +1,5 @@
 import { FC, ReactNode, Fragment } from "react";
 
-import styles from "./KeyboardControls.module.css";
-
 export interface KeyboardControlProps {
   children: ReactNode;
 
@@ -36,11 +34,7 @@ const Keys: FC<{ keyOrCombos: string }> = ({ keyOrCombos }) => {
         if (index % 2 === 1) {
           return <Fragment key={index}> {keyOrSeparator} </Fragment>;
         }
-        return (
-          <kbd key={index} className={styles.key}>
-            {keyOrSeparator}
-          </kbd>
-        );
+        return <kbd key={index}>{keyOrSeparator}</kbd>;
       })}
     </>
   );
