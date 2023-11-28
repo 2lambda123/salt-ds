@@ -25,16 +25,16 @@ Tableau does not currently offer the ability to set and apply a layout grid with
 A temporary solution is to create a layout grid, or select a grid from the Salt layout grid library, that fits the intended dashboard and density size. You can then export the grid as an SVG image at full scale from Figma, and import this into Tableau to use as a background image.
 
 To export a layout grid from Figma:
-1. Create a frame dimensioned to your dashboard size. Apply a layout grid, or select a Layout Grid from the Salt library that fits your intended dashboard size.
-2. Export the frame as an SVG image using the export settings in the bottom right of the design panel.
+1. Create a frame dimensioned to your dashboard size. Apply a layout grid, or select a Layout Grid from the Salt library that fits your intended dashboard size.
+2. Export the frame as an SVG image using the export settings in the bottom right of the design panel.
 3. Save the image within your files as an SVG.
 
 To import a layout grid SVG into Tableau:
 1. Create a new tableau dashboard with the desired viewport dimension.
-2. Drag and drop an image object from the dashboard panel.
-3. Select the correct layout grid file to import as an image.
-4. Treat this container as a background image.
-5. Place your dashboard content over the top of this base container.
+2. Drag and drop an image object from the dashboard panel.
+3. Select the correct layout grid file to import as an image.
+4. Treat this container as a background image.
+5. Place your dashboard content over the top of this base container.
 6. Delete the image layer once the dashboard design is complete.
 
 Tableau does not import images at 100% scale, and instead applies 4px outer padding across all borders by default. In the layout panel, change the padding values to 0px on all sides. This ensures any content aligned to the grid is sized and positioned accurately.
@@ -51,14 +51,15 @@ your dashboards.
 
 Objects within a Tableau dashboard typically sit in one of two container types: tiled or floating.
 - Tiled containers don't overlap and instead form part of a single-layer grid that's responsive to a change in dashboard size. You can nest tiled containers with additional containers and use fixed width/height values for sizing.
-- You can layer floating containers over other objects and resize them manually, making them easier to adjust and position.
+- You can layer floating containers over other objects and resize them manually, making them easier to adjust and position.
 
-There are three types of containers to organize elements within:
-- Horizontal: a horizontal container that controls the height.
-- Vertical: a vertical container that controls the width.
+There are three types of containers to organize elements within
+:
+- Horizontal: a horizontal container that controls the height.
+- Vertical: a vertical container that controls the width.
 - Blank: a versatile container that provides flexibility over both width and height. Blank objects add spacing and help with the organisation of a layout.
 
-Dashboards typically have a layout comprising a main body region supported by a fixed panel. 
+Dashboards typically have a layout comprising a main body region supported by a fixed panel. 
 
 Since the main body region contains panels positioned to accommodate content and maintain visual hierarchy, it's good to establish a base container in Tableau for additional containers. Drag and drop a horizontal container from the Objects panel on the right-hand side and resize it to the intended span of columns. The Salt example dashboard uses a six-column area for the main body region.
 
@@ -72,8 +73,8 @@ Using nested containers, you can define the content layout and structure. You ca
 
 Place vertical containers within a parent horizontal container to lay out content in a horizontal orientation.
 
-1. Place a horizontal container.
-2. Drop multiple vertical containers within the horizontal container.
+1. Place a horizontal container.
+2. Drop multiple vertical containers within the horizontal container.
 3. Use blank objects to create spacing between vertical content modules. Alternatively, apply inner padding to the
 left/right edges of the vertical containers to create padding.
 
@@ -81,9 +82,8 @@ left/right edges of the vertical containers to create padding.
 
 Place horizontal containers within a parent vertical container to lay out content in a vertical orientation.
 
-1. Place a vertical container.
-2. Drop multiple horizontal containers within the vertical
-container.
+1. Place a vertical container.
+2. Drop multiple horizontal containers within the vertical container.
 3. Use blank objects to create spacing between horizontal content modules. Alternatively, apply inner padding to the
 left/right edges of the horizontal containers to create padding.
 
@@ -124,10 +124,11 @@ Drag and drop a text object from the Objects panel to add text. You can nest tex
 
 Double-click into a text object to edit the content and formatting. You can edit individual parts of a single text object separately to display the type style and color.
 
-Metrics
+### Metrics
+
 The Salt example dashboard contains three prestyled text-based metrics you can adjust for your dashboard context:
 - Positive metric
-- Negative metric
+- Negative metric
 - Neutral metric
 
 You can use these to represent a change from a previous value. You can also add characters or labels to help provide context to the presented value.
@@ -137,7 +138,7 @@ of the interface. A single sheet contains editable data, shelves, cards, legends
 
 To use an existing Salt metric from the file, duplicate a chosen metric tab at the bottom and rename it. It’s important to note that you can only use an individual metric once within a dashboard; even if the design requires duplicates, you must represent this via multiple sheets.
 
-- Each time a sheet is created/duplicated, it appears under ‘Sheets’ within the Dashboard panel.
+- Each time a sheet is created/duplicated, it appears under ‘Sheets’ within the Dashboard panel.
 - To place a sheet/metric within a dashboard, drag and drop a sheet from the list into a container.
 
 Edit text within the relevant sheet containing the metric/data. You can control the font style, weight, size and color via the Edit Label panel. You can also apply different colors to individual parts of text.
@@ -156,7 +157,7 @@ You can add additional custom palettes within a file manually using the followin
 
 This should open up a text file containing HTML of the existing color palettes within the Tableau file.
 3. Duplicate the first set of color values and rename the palette.
-4. Replace the hex values with the color values of your choice.
+4. Replace the hex values with the color values of your choice.
 5. Add or delete color rows as needed.
 6. Save the file and reopen Tableau. You should now see the color palettes updated with the new one under the dropdown menu.
 
@@ -164,8 +165,8 @@ This should open up a text file containing HTML of the existing color palettes w
 
 Apply color to containers within dashboards using the background fill via the **Layout** panel.
 
-Use the following Salt tokens for panels in light mode dashboards:
-- Primary containers: `--container-primary-background` (hex value FFFFFF) 
+Use the following Salt tokens for panels in light mode dashboards:
+- Primary containers: `--container-primary-background` (hex value FFFFFF)
 - Secondary containers: `--container-secondary-background` (hex value EAEDEF)
 
 ### Text
