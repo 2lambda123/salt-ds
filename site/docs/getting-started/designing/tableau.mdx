@@ -14,11 +14,11 @@ Github link
 
 The dimensions and specifications in the examples below use the medium density (MD) in light mode. To design a Tableau dashboard following other Salt densities and modes, refer to the relevant foundations where applicable.
 
-### Spacing
+## Spacing
 
 Spacing refers to the organization of space to separate elements and create a consistent visual rhythm throughout a layout. Refer to the spacing foundation for further guidance on how to apply spatial tokens.
 
-#### Layout grids
+### Layout grids
 
 Tableau does not currently offer the ability to set and apply a layout grid with margins, columns and gutters to a dashboard.
 
@@ -41,78 +41,64 @@ Tableau does not import images at 100% scale, and instead applies 4px outer padd
 
 The Salt example dashboard uses an eight-column MD large grid.
 
-Use the lock
-feature to control
-equal padding
-sides
-Content modules
-The Salt Dashboard pattern recommends using the Card component to display data within the main body region of a
-dashboard. This can be achieved within Tableau instead by styling and positioning containers as panels.
-Do
+### Content modules
+The Salt [dashboard](/salt/patterns/dashboards/) pattern recommends using [`Card`](/salt/components/card/) to display data within the main body region of a dashboard. You can achieve this within Tableau instead by styling and positioning containers as panels.
+
+<ExampleContainer type="positive" label="Best practices">
 Refer to the content module spacing recommendations within the dashboard pattern to better establish readability in
 your dashboards.
-Objects within a Tableau dashboard typically sit in either two container types - Tiled or Floating.¢
- Tiled containers do not overlap one another and instead form part of a single-layer grid that is responsive to a change in
-dashboard size. Tiled containers can be nested with additional containers and use fixed width/height values for sizing.¢
- Floating containers can be layered over other objects and re-sized manually, making them easier to adjust and position.
-There are three types of containers to organise elements within
-j Horizontal - use a horizontal container to control the height
-h Vertical - use a vertical container to control the width
-f Blank - a versatile container that provides flexibility over both width and height. Blank objects are commonly used to add
-spacing and help with the organisation of a layout.
-Dashboards are commonly laid out with a main body region supported by a fixed panel
- Since the main body region contains panels positioned to accommodate content and maintain visual hierarchy, it is
-recommended to establish a base container in tableau for additional containers to be nested within. Drag and drop a
-horizontal container from the ‘Objects’ panel on the right-hand side, and re-size to the intended span of columns. The Salt
-example dashboard uses a 6 column area for the main body region.
-Main body
-region (6
-columns)
-There is flexibility for a fixed panel to be either a floating or tiled container. The Salt example dashboard utilises a floating
-container for flexibility of positioning and ease of adjustment.
-Fixed panel (2 columns)
-Nesting containers
-Content layout and structure is predominantly achieved through nested containers. The different container types can be
-nested within each other depending on the direction of content layout.
-Horizontal parent container
-Place vertical containers within a parent horizontal container
-to layout content in a horizontal orientation.¢
-j Place a horizontal container
-h Drop multiple vertical containers within the horizontal
-container
-f Use blank objects to create spacing between vertical
-content modules. Alternatively, apply inner padding to the
-left/right edges of the vertical containers to create
-padding.
-Parent container (horizontal)
-Individual vertical containers
-Blank object for spacing (24px, spacing-300)
-Vertical parent container
-Place horizontal containers within a parent vertical container
-to layout content in a vertical orientation.¢
-j Place a vertical container
-h Drop multiple horizontal containers within the vertical
-container
-f Use blank objects to create spacing between horizontal
-content modules. Alternatively, apply inner padding to the
-left/right edges of the horizontal containers to create
-padding.
-Parent container (vertical)
-Individual horizontal containers
-Blank object for spacing (24px, spacing-300)
-Note: the key indicator that a blank object is being placed inside a container is the thicker, blue line around the parent
-container, and the grey area being populated. Once objects have been placed, double click the handle of a lower-level object to
-select the parent container. A dashed line indicates the boundaries of all where objects are placed within a parent container.
-Typography
-Typography enhances readability and establishes hierarchy for more effective communication. Refer to the Salt Typography
-foundation for further guidance on how to apply type styles.
-Note: the tableau template does not contain a font palette with the design system’s type scale, Open Sans. The font is available
-within the software, however needs to be applied manually to text elements and formatted in accordance to the design
-system’s recommendations.
-It is also important to note the font preset sizes within Tableau do not visually render and align with the Salt equivalent
-typography sizing. The Salt example dashboard has been designed in MD and therefore utilises the MD type styles. Refer to the
-table below for a 1:1 conversion of the Salt typography scale for Tableau, in medium density.
-Font Style Weight Salt Size Tableau Size
+</ExampleContainer>
+
+Objects within a Tableau dashboard typically sit in one of two container types: tiled or floating.
+- Tiled containers don't overlap and instead form part of a single-layer grid that's responsive to a change in dashboard size. You can nest tiled containers with additional containers and use fixed width/height values for sizing.
+- You can layer floating containers over other objects and resize them manually, making them easier to adjust and position.
+
+There are three types of containers to organize elements within:
+- Horizontal: a horizontal container that controls the height.
+- Vertical: a vertical container that controls the width.
+- Blank: a versatile container that provides flexibility over both width and height. Blank objects add spacing and help with the organisation of a layout.
+
+Dashboards typically have a layout comprising a main body region supported by a fixed panel. 
+
+Since the main body region contains panels positioned to accommodate content and maintain visual hierarchy, it's good to establish a base container in Tableau for additional containers. Drag and drop a horizontal container from the Objects panel on the right-hand side and resize it to the intended span of columns. The Salt example dashboard uses a six-column area for the main body region.
+
+A fixed panel can be a floating or tiled container. The Salt example dashboard utilizes a floating container for flexibility of positioning and ease of adjustment.
+
+#### Nesting containers
+
+Using nested containers, you can define the content layout and structure. You can nest the different container types within each other depending on the direction of content layout.
+
+#### Horizontal parent container
+
+Place vertical containers within a parent horizontal container to lay out content in a horizontal orientation.
+
+1. Place a horizontal container.
+2. Drop multiple vertical containers within the horizontal container.
+3. Use blank objects to create spacing between vertical content modules. Alternatively, apply inner padding to the
+left/right edges of the vertical containers to create padding.
+
+#### Vertical parent container
+
+Place horizontal containers within a parent vertical container to lay out content in a vertical orientation.
+
+1. Place a vertical container.
+2. Drop multiple horizontal containers within the vertical
+container.
+3. Use blank objects to create spacing between horizontal content modules. Alternatively, apply inner padding to the
+left/right edges of the horizontal containers to create padding.
+
+The key indicator that you're placing a blank object inside a container is the thicker, blue line around the parent container and the populated grey area. Once you've placed the objects, double-click the handle of a lower-level object to select the parent container. A dashed line indicates the boundaries of objects within a parent container.
+
+## Typography
+
+Typography enhances readability and establishes hierarchy for more effective communication. Refer to the Salt [typography foundation](/salt/foundations/typography/) for further guidance on how to apply type styles.
+
+The Tableau template doesn't contain a font palette with the design system’s type scale, Open Sans. The font is available within the software; however it's necessary to apply it manually to text elements and format it in accordance with the design system’s recommendations.
+
+It's also important to note the font preset sizes within Tableau don't visually render and align with the Salt equivalent typography sizing. We've designed the Salt example dashboard in MD, so it utilizes the MD type styles. Refer to the table below for a 1:1 conversion of the Salt typography scale for Tableau in medium density.
+
+Font style Weight Salt size Tableau size
+
 Body Regular 12px 10px
 Body strong Semibold 12px 10px
 Body small Light 12px 10px
@@ -132,65 +118,65 @@ Label Regular 11px 10px
 Label strong Semibold 11px 10px
 Label small Light 11px 10px
 Action Semibold 12px 10px
-Text objects
-Drag and drop a text object from the Objects panel to add text. These can be nested within containers and have individual
-padding values applied to them using the Layout panel.
-Double click into a text object to edit the content and formatting. Individual parts of a single text object can be edited
-separately to display it’s own type style and colour,
+
+### Text objects
+Drag and drop a text object from the Objects panel to add text. You can nest text objects within containers and apply individual padding values to them using the Layout panel.
+
+Double-click into a text object to edit the content and formatting. You can edit individual parts of a single text object separately to display the type style and color.
+
 Metrics
-The Salt example dashboard contains three pre-styled text-based metrics that can be amended for your dashboard context:¢
- Positive metric¢
- Negative metri
- Neutral metric
+The Salt example dashboard contains three prestyled text-based metrics you can adjust for your dashboard context:
+- Positive metric
+- Negative metric
+- Neutral metric
 
+You can use these to represent a change from a previous value. You can also add characters or labels to help provide context to the presented value.
 
-These can be used to represent a change from a previous value. Characters or labels can be added to help provide context to
-the presented value.
-Metrics are formed within Sheets which are single view worksheets or stories that can be accessed via the tabs at the bottom
-of the interface. A single sheet contains editable data, shelves, cards, legends, and the Data and Analytics panes in its side bar.
-A collection of sheets form a dashboard and it’s content.
-To use an existing Salt metric from the file, duplicate a chosen metric tab at the bottom and rename it. It’s important to note
-that an individual metric can only be used once within a dashboard, even if the design requires duplicates, this must be
-represented via multiple sheets.¢
- Each time a sheet is created/duplicated, it appears under ‘Sheets’ within the Dashboard pane
- To place a sheet/metric within a dashboard, drag and drop a sheet from the list into a container
-List of
+You can find metrics within sheets which are single-view worksheets or stories accessible via the tabs at the bottom
+of the interface. A single sheet contains editable data, shelves, cards, legends, and the Data and Analytics panes in its side bar. A collection of sheets form a dashboard and its content.
 
-sheets
-Single metric
-Edit text within the relevant sheet containing the metric/data. The font style, weight, size and colour can be controlled via the
-“Edit Label’ panel. Different colours can also be applied to individual parts of text.
-Color
-Color is used to communicate meaning and establish visual hierarchy which is especially important within data visualisations.
-Refer to the Salt Color foundation for further guidance on how to apply color.
-There are fewer constraints when applying color within Tableau. Use a colour selector with RGB or Hex Ref input when adding
-color to objects - both text and container items.
-The Tableau file contains the UITK Categorical color palette to apply to data visualisation widgets. This palette is only accessible
-within individual Worksheets, rather than a Dashboard view.
-You can add additional custom palettes within a file manually, using the following steps:¢
-j In documents locate “Preferences” file within “My Tableau RepositoryÂ
-h Right-click on the file and select Open with > Notepad
-This should open up a text file containing HTML of the existing color palettes within the Tableau file.¢
-f Duplicate the first set of colour values and rename the palette¢
-| Replace the hex values with the color values of your choic
- Add or delete color rows as needed
-[ Save the file and reopen Tableau. The color palettes should now be updated with the new one under the dropdown menu.
-Panels
-Apply colour to containers within dashboards using the background fill via the Layout panel.
-Use the following Salt tokens for panels in light mode dashboards
- Primary containers: container-primary-background (hex value FFFFFFR
- Secondary containers: container-secondary-background (hex value EAEDEF)
-Text
-Colour is applied to text using RGB or Hex Ref inputs. Text based sheets do not contain preset color palettes that can be
-accessed similar as when creating charts. Individual colours can however be added into the ‘custom colors’ section within the
+To use an existing Salt metric from the file, duplicate a chosen metric tab at the bottom and rename it. It’s important to note that you can only use an individual metric once within a dashboard; even if the design requires duplicates, you must represent this via multiple sheets.
+
+- Each time a sheet is created/duplicated, it appears under ‘Sheets’ within the Dashboard panel.
+- To place a sheet/metric within a dashboard, drag and drop a sheet from the list into a container.
+
+Edit text within the relevant sheet containing the metric/data. You can control the font style, weight, size and color via the Edit Label panel. You can also apply different colors to individual parts of text.
+
+## Color
+
+Color communicates meaning and establishes visual hierarchy, which is especially important within data visualizations. Refer to the Salt [color foundation](/salt/foundations/color/) for further guidance on how to apply color.
+
+There are fewer constraints when applying color within Tableau. Use a color selector with RGB or Hex Ref input when adding color to objects—both text and container items.
+
+The Tableau file contains the UITK Categorical color palette to apply to data visualization widgets. You can only access this palette within individual worksheets rather than a dashboard view.
+
+You can add additional custom palettes within a file manually using the following steps:
+1. In File Explorer, locate the "Preferences" file in the "My Tableau Repository" folder.
+2. Right-click on the file and select **Open with** > **Notepad**.
+
+This should open up a text file containing HTML of the existing color palettes within the Tableau file.
+3. Duplicate the first set of color values and rename the palette.
+4. Replace the hex values with the color values of your choice.
+5. Add or delete color rows as needed.
+6. Save the file and reopen Tableau. You should now see the color palettes updated with the new one under the dropdown menu.
+
+### Panels
+
+Apply color to containers within dashboards using the background fill via the **Layout** panel.
+
+Use the following Salt tokens for panels in light mode dashboards:
+- Primary containers: `--container-primary-background` (hex value FFFFFF) 
+- Secondary containers: `--container-secondary-background` (hex value EAEDEF)
+
+### Text
+
+You can apply color to text using RGB or Hex Ref inputs. Text-based sheets don't contain preset color palettes like charts do. However, you can add individual colours into the **Custom colors** section within the
 color picker for quicker reference.
-Charts/widgets
-Lorem ipsum
-Icons
-Interactive Salt icons cannot be directly imported into a sheet/metric type on Tableau, due to the functional limitations within a
-working dashboard. Salt icons can be imported into a dashboard as SVG images, but cannot be ‘hooked up’ to any logic/code
-that enables the icon to update or change a live status as part of the dashboard’s requirements.
-For example, in the ‘Salt dashboard example’, the positive metric uses an ‘up’ arrow to indicate success/increase in value. If this
-was to change to a negative value, an imported Salt arrow icon would not change in line with this status.
-Instead, an alternative solution is to use the Windows character map utility to copy and paste characters such as up/down
-arrows as part of the metric text. This then allows a metric to adapt to the dashboard’s functional requirements.
+
+## Icons
+
+You cannot directly import interactive Salt icons into a sheet/metric type on Tableau due to the functional limitations within a working dashboard. You can import Salt icons into a dashboard as SVG images, but you cannot "hook them up" to any logic/code that enables the icon to update or change a live status as part of the dashboard’s requirements.
+
+For instance, in the Salt dashboard example, the positive metric uses an up arrow to indicate success/increase in value. If this was to change to a negative value, an imported Salt arrow icon wouldn't change in line with this status.
+
+Instead, an alternative solution is to use the Windows Character Map utility to copy and paste characters such as up/down arrows as part of the metric text. This allows a metric to adapt to the dashboard’s functional requirements.
