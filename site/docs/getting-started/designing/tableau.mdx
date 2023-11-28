@@ -3,235 +3,194 @@ title: Tableau
 layout: DetailTechnical
 ---
 
-Button bar is a pattern that displays possible actions for users to take when they reach the end of a task. You can use it to provide consistent design when implementing actionable interactions within pages or dialogs across your applications.
+Tableau is a data visualization tool. It allows users to create customized dashboards for business information analytics.
 
-  <Diagram
-    src="/img/patterns/button-bar/with-secondary.png"
-    alt="Example button bar, with CTA to the left then primary, on the right side there are two secondary buttons"
-    contentPosition="top"
-    border
-  />
+This guidance outlines how you can best align your Tableau dashboards with the Salt design system foundations. It's not possible to fully align Tableau designs with all of the foundations due to the tool's limitations, but this guidance will help you achieve greater visual consistency in spacing, tyopgraphy, color and icons.
 
-We provide design guidance for using Salt [button](/salt/components/button) and layout components ([stack layout](/salt/components/stack-layout) and [split layout](/salt/components/split-layout)) to achieve the pattern. You can also find implementation examples in the [storybook](https://storybook.saltdesignsystem.com/?path=/story/patterns-button-bar--button-bar).
+Analytical dashboard 
 
-## When to use it
+Tableau template
+Github link
 
-Use the pattern when the user needs to perform actions after reaching the end of a task in a page or a dialog. Some examples include navigating to previous or next steps, submitting a form and canceling changes.
+The dimensions and specifications in the examples below use the medium density (MD) in light mode. To design a Tableau dashboard following other Salt densities and modes, refer to the relevant foundations where applicable.
 
-## How to build it
+### Spacing
 
-Core actions:
-1. Use the stack layout component to group your buttons together. This will form the core set of actions. 
-2. Ensure that the stack layout has the direction property set to row.
+Spacing refers to the organization of space to separate elements and create a consistent visual rhythm throughout a layout. Refer to the spacing foundation for further guidance on how to apply spatial tokens.
 
-Secondary actions (optional):
-1. If your design requires a secondary set of actions, use another stack layout with button components as above.
-2. Combine the core and secondary stack layouts within a split layout to position them at the ends of the container.
-    - Assign the left buttons to the split layout `startItem` property. 
-    - Assign the right buttons to the split layout `endItem` property. 
+#### Layout grids
 
-  <Diagram
-    src="/img/patterns/button-bar/how-to-build.png"
-    alt="Example button bar, with CTA to the left then primary, on the right side there are two secondary buttons"
-    contentPosition="top"
-    border
-  />
+Tableau does not currently offer the ability to set and apply a layout grid with margins, columns and gutters to a dashboard.
 
-## Button options 
+A temporary solution is to create a layout grid, or select a grid from the Salt layout grid library, that fits the intended dashboard and density size. You can then export the grid as an SVG image at full scale from Figma, and import this into Tableau to use as a background image.
 
-There are three button variants to choose from. Choosing the correct button depends on the context and is ultimately the choice of the application team. However, we recommend following these guidelines for consistent design:
+To export a layout grid from Figma:
+1. Create a frame dimensioned to your dashboard size. Apply a layout grid, or select a Layout Grid from the Salt library that fits your intended dashboard size.
+2. Export the frame as an SVG image using the export settings in the bottom right of the design panel.
+3. Save the image within your files as an SVG.
 
-**Call to Action (CTA)**
-- Use for the most desired path you intend the user to take.
-- In almost all cases, your scenario should have one CTA so the desired path is clear.
-- This is commonly an affirmative action allowing users to proceed or complete the task, such as Continue, Save or Submit.
+To import a layout grid SVG into Tableau:
+1. Create a new tableau dashboard with the desired viewport dimension.
+2. Drag and drop an image object from the dashboard panel.
+3. Select the correct layout grid file to import as an image.
+4. Treat this container as a background image.
+5. Place your dashboard content over the top of this base container.
+6. Delete the image layer once the dashboard design is complete.
 
-**Primary**
-- Use for the alternate path you're offering the user.
-- There can be multiple equally weighted paths, resulting in more than one primary button in a scenario.
-- You can use it as a dismissive action alongside the affirmative (CTA) action, such as Cancel or Dismiss.
+Tableau does not import images at 100% scale, and instead applies 4px outer padding across all borders by default. In the layout panel, change the padding values to 0px on all sides. This ensures any content aligned to the grid is sized and positioned accurately.
 
-**Secondary**
-- Use for the tertiary path you're offering the user.
-- There can be multiple equally weighted tertiary paths resulting in more than one secondary button in a scenario.
-- This is commonly a related task or function that’s lower priority for the task, such as Import or Export.
-- You can also use it to signify a destructive action that may result in a permanent loss of data, commonly followed by user confirmation (e.g., a dialog), such as Delete or Reset.
+The Salt example dashboard uses an eight-column MD large grid.
 
-Remember to use hierarchy when making your button choices, much like following a type ramp. In Example 1 below, Cancel is the alternate path and uses a primary button because there are only two options. However, in Example 2, Cancel uses the secondary button because three actions are available to the user, with this one being tertiary and the least desired option.
+Use the lock
+feature to control
+equal padding
+sides
+Content modules
+The Salt Dashboard pattern recommends using the Card component to display data within the main body region of a
+dashboard. This can be achieved within Tableau instead by styling and positioning containers as panels.
+Do
+Refer to the content module spacing recommendations within the dashboard pattern to better establish readability in
+your dashboards.
+Objects within a Tableau dashboard typically sit in either two container types - Tiled or Floating.¢
+ Tiled containers do not overlap one another and instead form part of a single-layer grid that is responsive to a change in
+dashboard size. Tiled containers can be nested with additional containers and use fixed width/height values for sizing.¢
+ Floating containers can be layered over other objects and re-sized manually, making them easier to adjust and position.
+There are three types of containers to organise elements within
+j Horizontal - use a horizontal container to control the height
+h Vertical - use a vertical container to control the width
+f Blank - a versatile container that provides flexibility over both width and height. Blank objects are commonly used to add
+spacing and help with the organisation of a layout.
+Dashboards are commonly laid out with a main body region supported by a fixed panel
+ Since the main body region contains panels positioned to accommodate content and maintain visual hierarchy, it is
+recommended to establish a base container in tableau for additional containers to be nested within. Drag and drop a
+horizontal container from the ‘Objects’ panel on the right-hand side, and re-size to the intended span of columns. The Salt
+example dashboard uses a 6 column area for the main body region.
+Main body
+region (6
+columns)
+There is flexibility for a fixed panel to be either a floating or tiled container. The Salt example dashboard utilises a floating
+container for flexibility of positioning and ease of adjustment.
+Fixed panel (2 columns)
+Nesting containers
+Content layout and structure is predominantly achieved through nested containers. The different container types can be
+nested within each other depending on the direction of content layout.
+Horizontal parent container
+Place vertical containers within a parent horizontal container
+to layout content in a horizontal orientation.¢
+j Place a horizontal container
+h Drop multiple vertical containers within the horizontal
+container
+f Use blank objects to create spacing between vertical
+content modules. Alternatively, apply inner padding to the
+left/right edges of the vertical containers to create
+padding.
+Parent container (horizontal)
+Individual vertical containers
+Blank object for spacing (24px, spacing-300)
+Vertical parent container
+Place horizontal containers within a parent vertical container
+to layout content in a vertical orientation.¢
+j Place a vertical container
+h Drop multiple horizontal containers within the vertical
+container
+f Use blank objects to create spacing between horizontal
+content modules. Alternatively, apply inner padding to the
+left/right edges of the horizontal containers to create
+padding.
+Parent container (vertical)
+Individual horizontal containers
+Blank object for spacing (24px, spacing-300)
+Note: the key indicator that a blank object is being placed inside a container is the thicker, blue line around the parent
+container, and the grey area being populated. Once objects have been placed, double click the handle of a lower-level object to
+select the parent container. A dashed line indicates the boundaries of all where objects are placed within a parent container.
+Typography
+Typography enhances readability and establishes hierarchy for more effective communication. Refer to the Salt Typography
+foundation for further guidance on how to apply type styles.
+Note: the tableau template does not contain a font palette with the design system’s type scale, Open Sans. The font is available
+within the software, however needs to be applied manually to text elements and formatted in accordance to the design
+system’s recommendations.
+It is also important to note the font preset sizes within Tableau do not visually render and align with the Salt equivalent
+typography sizing. The Salt example dashboard has been designed in MD and therefore utilises the MD type styles. Refer to the
+table below for a 1:1 conversion of the Salt typography scale for Tableau, in medium density.
+Font Style Weight Salt Size Tableau Size
+Body Regular 12px 10px
+Body strong Semibold 12px 10px
+Body small Light 12px 10px
+H1 Bold 24px
+H1 strong Extrabold 24px
+H1 small Medium 24px
+H2 Semibold 18px 14px
+H2 strong Bold 18px 14px
+H2 small Regular 18px 14px
+H3 Semibold 14px 11px
+H3 strong Bold 14px 11px
+H3 small Regular 14px 11px
+H4 Semibold 12px 10px
+H4 strong Bold 12px 10px
+H4 small Regular 12px 10px
+Label Regular 11px 10px
+Label strong Semibold 11px 10px
+Label small Light 11px 10px
+Action Semibold 12px 10px
+Text objects
+Drag and drop a text object from the Objects panel to add text. These can be nested within containers and have individual
+padding values applied to them using the Layout panel.
+Double click into a text object to edit the content and formatting. Individual parts of a single text object can be edited
+separately to display it’s own type style and colour,
+Metrics
+The Salt example dashboard contains three pre-styled text-based metrics that can be amended for your dashboard context:¢
+ Positive metric¢
+ Negative metri
+ Neutral metric
 
-<Diagrams>
-  <Diagram
-    src="/img/patterns/button-bar/ex-1.png"
-    alt="Example showing button bar with submit button on left as CTA, and cancel as primary to the right of submit"
-    contentPosition="top"
-  >
-    ### Example 1
-    - The **Submit** primary action uses the CTA button
-    - The **Cancel** alternate action uses the primary button
-    </Diagram>
-  <Diagram
-    src="/img/patterns/button-bar/ex-2.png"
-    alt="Example showing button bar with next button on right as CTA, previous as primary to the left of next, and cancel as secondary to the left of cancel"
-    contentPosition="top"
-  >
-    ### Example 2
-    - The **Next** primary action uses the CTA button
-    - The **Previous** alternate action uses the primary button (order follows sequential forms).
-    - The **Cancel** tertiary action uses the secondary button.
-  </Diagram>
-</Diagrams>
 
-<ExampleContainer type="positive" customPillText="Best practices">
-  - Provide only one CTA button for a given task—the action that allows the user to complete the task.
-</ExampleContainer>
+These can be used to represent a change from a previous value. Characters or labels can be added to help provide context to
+the presented value.
+Metrics are formed within Sheets which are single view worksheets or stories that can be accessed via the tabs at the bottom
+of the interface. A single sheet contains editable data, shelves, cards, legends, and the Data and Analytics panes in its side bar.
+A collection of sheets form a dashboard and it’s content.
+To use an existing Salt metric from the file, duplicate a chosen metric tab at the bottom and rename it. It’s important to note
+that an individual metric can only be used once within a dashboard, even if the design requires duplicates, this must be
+represented via multiple sheets.¢
+ Each time a sheet is created/duplicated, it appears under ‘Sheets’ within the Dashboard pane
+ To place a sheet/metric within a dashboard, drag and drop a sheet from the list into a container
+List of
 
-## Button order
-
-The container and the type of scenario determine the position of actions (CTA, primary and secondary buttons).
-
-<Diagrams>
-  <Diagram
-    src="/img/patterns/button-bar/default-order.png"
-    alt="Example showing default button bar order, submit CTA on the left and cancel primary to the right of submit"
-    contentPosition="top"
-    border
-  >
-    ### Default/Single-step form
-    - Groups core actions on the left.
-    - Follows an F-pattern reading model, allowing users to quickly scan down.
-  </Diagram>
-  <Diagram
-    src="/img/patterns/button-bar/multi-step-form.png"
-    alt="Example showing form with button bar underneath, the core actions are grouped on the right."
-    contentPosition="top"
-    border
-  >
-    ### Multi-step form
-    - Groups core actions on the right
-    - Always positions **Next** right of **Previous** and **Cancel** to reflect the direction of the steps
-  </Diagram>
-  <Diagram
-    src="/img/patterns/button-bar/dialog.png"
-    alt="Example showing a dialog with a form and button bar underneath, the core actions are grouped on the right."
-    contentPosition="bottom"
-    border
-  >
-    ### Dialog
-    - Always displayes core actions on the right.
-    - Follows a Z-pattern reading model, where actions are the last focal point in the dialog.
-  </Diagram>
-  <Diagram
-    src="/img/patterns/button-bar/small-viewport.png"
-    alt="Example showing a form with two buttons that fill the width"
-    contentPosition="bottom"
-    border
-  >
-    ### Small viewport (below the xs breakpoint)
-    - Provides the option for actions to fill the width for a cleaner layout if button width doesn’t need to increase drastically.
-  </Diagram>
-</Diagrams>
-
-<ExampleContainer type="positive" customPillText="Best practices">
-  - Group core onward actions for the form to ensure they remain accessible on browser zoom (e.g., Previous, Next, Cancel, or Submit, Cancel).
-  - You should display secondary actions that aren’t core to the workflow at the opposite end of the button bar.
-</ExampleContainer>
-
-## Button bar position
-
-There are two ways to position the button bar:
-
-### Fixed
-
-The button bar is fixed at the bottom of the viewport when:
-- A user can proceed (or step back) regardless of task completion.
-- If content overflows, button bar has a secondary border style.
-- The task is in a wizard.
-
-<Diagrams>
-  <Diagram
-    src="/img/patterns/button-bar/fixed-left.png"
-    alt="Example showing a form overflowing behind a button bar. The button bar has a top border."
-    contentPosition="bottom"
-    border
-  >
-  When fields overflow behind the button bar, a border should indicate if more fields are available. 
-  </Diagram>
-  <Diagram
-    src="/img/patterns/button-bar/fixed-right.png"
-    alt="Example showing the end of a form. The button bar has no top border."
-    contentPosition="bottom"
-    border
-  >
-  Hide the button bar border if content is no longer overflowing (i.e., user has reached the bottom of the form or the form is displayed entirely above the fold).
-  </Diagram>
-</Diagrams>
-
-### In line
-
-The button bar is located at the end of the task when:
-- The user needs to complete the entire task before proceeding, for example, if there are mandatory fields in a form.
-- The system needs the user to acknowledge all information on the page.
-
-<Diagrams>
-  <Diagram
-    src="/img/patterns/button-bar/in-line-left.png"
-    alt="Example showing an overflowing form."
-    contentPosition="bottom"
-    border
-  >
-  When the button bar is at the end of the task, the button may not be visible when the user is at the top.
-  </Diagram>
-  <Diagram
-    src="/img/patterns/button-bar/in-line-right.png"
-    alt="Example showing the bottom of a form with buttons."
-    contentPosition="bottom"
-    border
-  >
-  The button bar will be visible when the user scrolls to the bottom of the task.
-  </Diagram>
-</Diagrams>
-
-## Button labels
-
-Buttons can display text or icons (or both) to describe the action. 
-
-<ExampleContainer type="positive" customPillText="Best practices">
-  - Always use verbs that emphasize the action the button will carry out.
-  - Be succinct. Avoid having more than two or three words in a button label.
-  - For example, use **Create** instead of **Ok** to create a profile, or **Save/Discard** instead of **Yes/No** to dave changes.
-</ExampleContainer>
-
-## Stacked button bar layout
-
-For improved usability at smaller screen or app resolutions, we recommend responsively stacking the button bar when it reaches a specific viewport width or application breakpoint. 
-
-We recommend stacking at the xs breakpoint by default. Buttons will expand to fill the full width of the Button Bar when stacked.
-
-**Order of stacked buttons**: In a stacked button layout, we recommend buttons stack in order of importance from the top down.
-
-  <Diagram
-    src="/img/patterns/button-bar/stacked.png"
-    alt="Example button bar, vertically stacked"
-    contentPosition="top"
-    border
-  />
-
-<ExampleContainer type="positive" customPillText="Best practices">
-  - Enable the stacked layout when you have longer button labels that may not fit within the horizontal layout at smaller Button Bar widths.
-  - If users will access your application on a mobile device, use a stacked button layout to ensure an adequate touch-area for the buttons.
-</ExampleContainer>
-
-### Building a stacked button bar
-
-1. Build a button bar following the foundational guidelines provided earlier in the documentation.
-2. Adjust the direction property on both stack layout and split layout (if utilized) to `{{xs: "column", sm: "row"}}`. This responsive setting arranges the buttons into a column for extra-small (xs) screens and a row for small (sm) screens and upwards, ensuring a responsive layout that adapts to the viewport width.
-3. When the button bar has core actions on the right, you will need to configure an alternative stack layout.
-    - Reverse the buttons in this layout to ensure the core actions are at the top.
-    - Employ Salt's responsive design utilities to render this alternative layout at the desired breakpoint. You can find an example of this behaviour [here](https://storybook.saltdesignsystem.com/?path=/story/patterns-button-bar--responsive-reverse).
-
-  <Diagram
-    src="/img/patterns/button-bar/build-stacked.png"
-    alt="Diagram showing how stacked button bar is built"
-    contentPosition="top"
-    border
-  />
+sheets
+Single metric
+Edit text within the relevant sheet containing the metric/data. The font style, weight, size and colour can be controlled via the
+“Edit Label’ panel. Different colours can also be applied to individual parts of text.
+Color
+Color is used to communicate meaning and establish visual hierarchy which is especially important within data visualisations.
+Refer to the Salt Color foundation for further guidance on how to apply color.
+There are fewer constraints when applying color within Tableau. Use a colour selector with RGB or Hex Ref input when adding
+color to objects - both text and container items.
+The Tableau file contains the UITK Categorical color palette to apply to data visualisation widgets. This palette is only accessible
+within individual Worksheets, rather than a Dashboard view.
+You can add additional custom palettes within a file manually, using the following steps:¢
+j In documents locate “Preferences” file within “My Tableau RepositoryÂ
+h Right-click on the file and select Open with > Notepad
+This should open up a text file containing HTML of the existing color palettes within the Tableau file.¢
+f Duplicate the first set of colour values and rename the palette¢
+| Replace the hex values with the color values of your choic
+ Add or delete color rows as needed
+[ Save the file and reopen Tableau. The color palettes should now be updated with the new one under the dropdown menu.
+Panels
+Apply colour to containers within dashboards using the background fill via the Layout panel.
+Use the following Salt tokens for panels in light mode dashboards
+ Primary containers: container-primary-background (hex value FFFFFFR
+ Secondary containers: container-secondary-background (hex value EAEDEF)
+Text
+Colour is applied to text using RGB or Hex Ref inputs. Text based sheets do not contain preset color palettes that can be
+accessed similar as when creating charts. Individual colours can however be added into the ‘custom colors’ section within the
+color picker for quicker reference.
+Charts/widgets
+Lorem ipsum
+Icons
+Interactive Salt icons cannot be directly imported into a sheet/metric type on Tableau, due to the functional limitations within a
+working dashboard. Salt icons can be imported into a dashboard as SVG images, but cannot be ‘hooked up’ to any logic/code
+that enables the icon to update or change a live status as part of the dashboard’s requirements.
+For example, in the ‘Salt dashboard example’, the positive metric uses an ‘up’ arrow to indicate success/increase in value. If this
+was to change to a negative value, an imported Salt arrow icon would not change in line with this status.
+Instead, an alternative solution is to use the Windows character map utility to copy and paste characters such as up/down
+arrows as part of the metric text. This then allows a metric to adapt to the dashboard’s functional requirements.
