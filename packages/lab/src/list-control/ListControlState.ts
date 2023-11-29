@@ -62,8 +62,19 @@ export function useListControl(props: ListControlProps) {
     state: "open",
   });
 
+  const openKey = useRef<{ key: string; altKey: boolean }>({
+    key: "",
+    altKey: false,
+  });
   const setOpen = (event: SyntheticEvent, newOpen: boolean) => {
     setOpenState(newOpen);
+
+    if (event.nativeEvent instanceof KeyboardEvent) {
+      openKey.current = {
+        key: event.nativeEvent.key,
+        altKey: event.nativeEvent.altKey,
+      };
+    }
     onOpenChange?.(event, newOpen);
   };
 
@@ -205,6 +216,7 @@ export function useListControl(props: ListControlProps) {
     multiselect: Boolean(multiselect),
     openState,
     setOpen,
+    openKey,
     activeState,
     setActive,
     selectedState,

@@ -365,6 +365,7 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
             onFocus={handleFocus}
             onBlur={handleBlur}
             role="combobox"
+            type="button"
             disabled={disabled}
             aria-readonly={readOnly ? "true" : undefined}
             aria-required={required ? "true" : undefined}

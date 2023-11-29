@@ -9,6 +9,7 @@ import {
 } from "@salt-ds/core";
 import { countryMetaMap, GB, LazyCountrySymbol, US } from "@salt-ds/countries";
 import { ChangeEvent, Suspense, SyntheticEvent, useState } from "react";
+import { usStateExampleData } from "../assets/exampleData";
 
 export default {
   title: "Lab/Combo Box Next",
@@ -22,17 +23,7 @@ export default {
   },
 } as Meta<typeof ComboBoxNext>;
 
-const usStates = [
-  "Alabama",
-  "Alaska",
-  "Arizona",
-  "Arkansas",
-  "California",
-  "Connecticut",
-  "Delaware",
-  "Florida",
-  "Georgia",
-];
+const usStates = usStateExampleData.slice(0, 10);
 
 const Template: StoryFn<typeof ComboBoxNext> = (args) => {
   const [value, setValue] = useState(args.defaultValue?.toString() ?? "");
@@ -55,6 +46,8 @@ const Template: StoryFn<typeof ComboBoxNext> = (args) => {
     } else {
       setValue("");
     }
+
+    args.onSelectionChange?.(event, newSelected);
   };
 
   return (

@@ -16,6 +16,7 @@ import {
   useFloatingComponent,
   useFloatingUI,
   useForkRef,
+  useFormFieldProps,
   useId,
 } from "@salt-ds/core";
 import {
@@ -43,8 +44,8 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
     const {
       children,
       className,
-      disabled,
-      readOnly,
+      disabled: disabledProp,
+      readOnly: readOnlyProp,
       multiselect,
       onSelectionChange,
       selected,
@@ -55,6 +56,7 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
       open,
       inputProps: inputPropsProp,
       variant = "primary",
+      onClick,
       onKeyDown,
       onFocus,
       onBlur,
@@ -67,6 +69,15 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
       css: comboBoxCss,
       window: targetWindow,
     });
+
+    const {
+      a11yProps: { "aria-labelledby": formFieldLabelledBy } = {},
+      disabled: formFieldDisabled,
+      readOnly: formFieldReadOnly,
+    } = useFormFieldProps();
+
+    const disabled = Boolean(disabledProp) || formFieldDisabled;
+    const readOnly = Boolean(readOnlyProp) || formFieldReadOnly;
 
     const listControl = useListControl({
       open,
@@ -83,6 +94,7 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
       setActive,
       openState,
       setOpen,
+      openKey,
       getOptionAtIndex,
       getIndexOfOption,
       getOptionsMatching,
@@ -175,7 +187,6 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
           newActive = getOptionAtIndex(Math.min(count, currentIndex + 10));
           break;
         case "Enter":
-          // case " ":
           if (openState && activeState?.disabled) {
             event.preventDefault();
             return;
@@ -230,11 +241,20 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
       onBlur?.(event);
     };
 
+    const handleClick = (event: MouseEvent<HTMLInputElement>) => {
+      if (!readOnly) {
+        setOpen(event, true);
+      }
+
+      onClick?.(event);
+    };
+
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       if (!openState) {
         setOpen(event, true);
       }
 
+      // Wait for the filter to happen
       queueMicrotask(() => {
         const newOption = getOptionAtIndex(0);
         if (newOption) {
@@ -263,21 +283,32 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
 
     useEffect(() => {
       if (openState && !activeState) {
-        if (selectedState.length > 0) {
-          const selected = getOptionsMatching(
-            (option) => option.value === selectedState[0]
-          ).pop();
-          if (selected) {
-            setActive(selected);
+        if (openKey.current.key === "ArrowDown") {
+          if (!openKey.current.altKey) {
+            setActive(getOptionAtIndex(0));
+          }
+        } else if (openKey.current.key === "ArrowUp") {
+          if (!openKey.current.altKey) {
+            setActive(getOptionAtIndex(options.length - 1));
           }
         } else {
-          setActive(getOptionAtIndex(0));
+          if (selectedState.length > 0) {
+            const selected = getOptionsMatching(
+              (option) => option.value === selectedState[0]
+            ).pop();
+            if (selected) {
+              setActive(selected);
+            }
+          } else {
+            setActive(getOptionAtIndex(0));
+          }
         }
       } else if (!openState) {
         setActive(undefined);
       }
     }, [openState, children]);
 
+    const buttonId = useId();
     const listId = useId();
     const handleListRef = useForkRef<HTMLDivElement>(floating, listRef);
 
@@ -288,6 +319,11 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
           endAdornment={
             !readOnly ? (
               <Button
+                aria-labelledby={clsx(buttonId, formFieldLabelledBy)}
+                aria-label="Show options"
+                aria-expanded={openState}
+                aria-controls={openState ? listId : undefined}
+                aria-haspopup="listbox"
                 disabled={disabled}
                 variant="secondary"
                 onClick={handleButtonClick}
@@ -302,6 +338,7 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
               </Button>
             ) : undefined
           }
+          onClick={handleClick}
           onBlur={handleBlur}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
@@ -323,7 +360,7 @@ export const ComboBoxNext = forwardRef<HTMLDivElement, ComboBoxNextProps>(
           ref={handleRef}
         />
         <FloatingComponent
-          open={openState || focusedState}
+          open={(openState || focusedState) && !readOnly}
           left={x ?? 0}
           top={y ?? 0}
           position={strategy}
