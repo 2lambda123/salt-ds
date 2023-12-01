@@ -4,8 +4,9 @@
   --dropdown-next-cursor: var(--salt-selectable-cursor-hover);
 }
 
-.saltDropdownNext-button {
+.saltDropdownNext {
   all: unset;
+  box-sizing: border-box;
   min-width: 4em;
   width: 100%;
   background: var(--dropdown-next-background);
@@ -22,11 +23,11 @@
   font-weight: var(--salt-text-fontWeight);
 }
 
-.saltDropdownNext-button:hover {
+.saltDropdownNext:hover {
   --dropdown-next-borderColor: var(--salt-editable-borderColor-hover);
 }
 
-.saltDropdownNext-button:focus-visible {
+.saltDropdownNext:focus-visible {
   outline: var(--salt-focused-outline);
   --dropdown-next-borderColor: var(--salt-editable-borderColor-hover);
 }
@@ -51,14 +52,14 @@
   --dropdown-next-background: var(--salt-editable-secondary-background);
 }
 
-.saltDropdownNext-button:disabled {
+.saltDropdownNext:disabled {
   --dropdown-next-background: var(--salt-editable-primary-background-disabled);
   --dropdown-next-borderColor: var(--salt-editable-borderColor-disabled);
   --dropdown-next-color: var(--salt-content-primary-foreground-disabled);
   --dropdown-next-cursor: var(--salt-selectable-cursor-disabled);
 }
 
-.saltDropdownNext-button[aria-readonly="true"] {
+.saltDropdownNext[aria-readonly="true"] {
   --dropdown-next-background: var(--salt-editable-primary-background-readonly);
   --dropdown-next-borderColor: var(--salt-editable-borderColor-readonly);
   --dropdown-next-color: var(--salt-content-primary-foreground);
@@ -70,7 +71,7 @@
   --dropdown-next-borderColor: var(--salt-status-error-borderColor);
 }
 
-.saltDropdownNext-error .saltDropdownNext-button:focus-visible {
+.saltDropdownNext-error .saltDropdownNext:focus-visible {
   outline-color: var(--salt-status-error-borderColor);
   --dropdown-next-borderColor: var(--salt-status-error-borderColor);
 }
@@ -80,7 +81,7 @@
   --dropdown-next-borderColor: var(--salt-status-warning-borderColor);
 }
 
-.saltDropdownNext-warning .saltDropdownNext-button:focus-visible {
+.saltDropdownNext-warning .saltDropdownNext:focus-visible {
   outline-color: var(--salt-status-warning-borderColor);
   --dropdown-next-borderColor: var(--salt-status-warning-borderColor);
 }
@@ -90,7 +91,7 @@
   --dropdown-next-borderColor: var(--salt-status-success-borderColor);
 }
 
-.saltDropdownNext-success .saltDropdownNext-button:focus-visible {
+.saltDropdownNext-success .saltDropdownNext:focus-visible {
   outline-color: var(--salt-status-success-borderColor);
   --dropdown-next-borderColor: var(--salt-status-success-borderColor);
 }

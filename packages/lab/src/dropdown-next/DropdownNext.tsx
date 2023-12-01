@@ -350,15 +350,18 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
     const handleListRef = useForkRef<HTMLDivElement>(floating, listRef);
 
     return (
-      <div
-        className={clsx(withBaseName(), withBaseName(variant), {
-          [withBaseName("disabled")]: disabled,
-          [withBaseName(validationStatus ?? "")]: validationStatus,
-        })}
-      >
+      <>
         <ListControlContext.Provider value={listControl}>
           <button
-            className={clsx(withBaseName("button"), className)}
+            className={clsx(
+              withBaseName(),
+              withBaseName(variant),
+              {
+                [withBaseName("disabled")]: disabled,
+                [withBaseName(validationStatus ?? "")]: validationStatus,
+              },
+              className
+            )}
             ref={handleButtonRef}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
@@ -413,7 +416,7 @@ export const DropdownNext = forwardRef<HTMLButtonElement, DropdownNextProps>(
             {children}
           </FloatingComponent>
         </ListControlContext.Provider>
-      </div>
+      </>
     );
   }
 );
