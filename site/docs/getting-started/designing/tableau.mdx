@@ -14,7 +14,7 @@ This guidance outlines how you can best align your Tableau dashboards with the S
 
 ## Analytical dashboard
 
-They key principles this guidance covers derive from the [Analytical Dashboard pattern] (/salt/patterns/dashboards/) . We highly recommend reading the pattern prior to building a dashboard design within Tableau, as this will enable you to form a foundational understanding of the layout features and components recommended to maintain effective visual hierarchy. 
+They key principles this guidance covers derive from the [Analytical Dashboard pattern](/salt/patterns/dashboards/). We highly recommend reading the pattern prior to building a dashboard design within Tableau, as this will enable you to form a foundational understanding of the layout features and components recommended to maintain effective visual hierarchy. 
 
 ## Tableau template
 Github link
@@ -105,6 +105,36 @@ A fixed panel can be a floating or tiled container. The Salt example dashboard u
 #### Nesting containers
 
 Using nested containers, you can define the content layout and structure. You can nest the different container types within each other depending on the direction of content layout.
+
+<Diagrams>
+  <Diagram
+    src="/img/design-getting-started/horizontal-parent-container.png"
+    contentPosition="top"
+    alt="Horizontal container nesting"
+  >
+    ### Horizontal parent container
+   Place vertical containers within a parent horizontal container to layout content in a horizontal orientation. 
+
+1a. Place a horizontal container.
+2a. Drop multiple vertical containers within the horizontal container.
+3a. Use blank objects to create spacing between vertical content modules. Alternatively, apply inner padding to the left/right edges of the vertical containers to create padding. 
+
+  </Diagram>
+
+  <Diagram
+    src="/img/design-getting-started/vertical-parent-container.png"
+    contentPosition="top"
+    alt="Vertical container nesting"
+  >
+    ### Vertical parent container
+ Place horizontal containers within a parent vertical container to layout content in a vertical orientation. 
+
+1b. Place a vertical container.
+2b. Drop multiple horizontal containers within the vertical container.
+3b. Use blank objects to create spacing between horizontal content modules. Alternatively, apply inner padding to the left/right edges of the horizontal containers to create padding. 
+
+  </Diagram>
+</Diagrams>
 
 #### Horizontal parent container
 
