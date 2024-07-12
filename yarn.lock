@@ -6080,7 +6080,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.6.0"
     "@typescript-eslint/parser": "npm:^6.6.0"
     "@vitejs/plugin-react": "npm:^4.1.0"
-    ag-grid-community: "npm:^28.2.1"
+    ag-grid-community: "npm:^32.0.1"
     ag-grid-enterprise: "npm:^28.2.1"
     ag-grid-react: "npm:^28.2.1"
     axe-core: "npm:^4.4.3"
@@ -10254,10 +10254,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ag-grid-community@npm:^28.2.1":
-  version: 28.2.1
-  resolution: "ag-grid-community@npm:28.2.1"
-  checksum: 32de9e6cb547b57d2fa89d9fffed70d445e0542c70ace5a3b6fc92f9547b2d5a97caeaab3ae1c21f2f5a58c0669857427a79ea1a0bd97a8273a0f571f56c20bf
+"ag-charts-types@npm:10.0.1":
+  version: 10.0.1
+  resolution: "ag-charts-types@npm:10.0.1"
+  checksum: 13825e4e3b51a15ed47cb91caad751bd0d1a997591db6f0617d318b806ee15207f3606d95da5f4d7fe9b63a055e782450e660758efcc981847a02809bbdcef3e
+  languageName: node
+  linkType: hard
+
+"ag-grid-community@npm:^32.0.1":
+  version: 32.0.1
+  resolution: "ag-grid-community@npm:32.0.1"
+  dependencies:
+    ag-charts-types: "npm:10.0.1"
+  checksum: d2d77195108a072dc65329fdebd414e0c5623e4f35f466bc54f834d698298cc25d6f0b1bf94077e48bf3330eab9bb7750c024b065a5653f0fa65b464ef4b0007
   languageName: node
   linkType: hard
 
