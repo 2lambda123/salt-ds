@@ -14405,12 +14405,12 @@ __metadata:
   linkType: hard
 
 "dom-iterator@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "dom-iterator@npm:1.0.0"
+  version: 1.0.2
+  resolution: "dom-iterator@npm:1.0.2"
   dependencies:
     component-props: "npm:1.1.1"
     component-xor: "npm:0.0.4"
-  checksum: f67562fa5e030bfb686317f79ccffcbae7ece55302c429926b934c51af6d4aa58f2f0cd0f00cffe80e17946e299a0670d0807221e07f42f548409bf97b6f8251
+  checksum: a637235e9a7c9c5272aa964548de6cb4c35ae1c8293c551775596496fe82dc5171a072d74fb8dafcc9e86cb086e659d8c5c302477345eac1b4d89503d15a8075
   languageName: node
   linkType: hard
 
